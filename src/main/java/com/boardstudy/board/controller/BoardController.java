@@ -92,4 +92,10 @@ public class BoardController {
         boardService.write(boardTemp, file);
         return "redirect:/board/list";
     }
+
+    @GetMapping("/board/like/{id}")
+    public String likeBoard(@PathVariable("id") Integer id){
+        boardService.increaseLikeCount(id);
+        return "redirect:/board/view?id=" + id;
+    }
 }

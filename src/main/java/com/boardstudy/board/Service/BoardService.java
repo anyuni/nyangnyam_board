@@ -49,9 +49,8 @@ public class BoardService {
     }
 
     //특정 게시글 불러오기
-    public Board boardView(Integer id){
-
-        return boardRepository.findById(id).get();
+    public Board boardView(Integer id) {
+        return boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid board Id:" + id));
     }
 
     //특정 게시글 삭제
@@ -60,5 +59,11 @@ public class BoardService {
         boardRepository.deleteById(id);
     }
 
-    //
+    //좋아요 기능
+    public void increaseLikeCount(Integer id){
+        Board board = boardRepository.findById(id).orElseThrow();
+        board.setLikeCount(board.getLikeCount()+1);
+        boardRepository.save(board);
+    }
+
 }
