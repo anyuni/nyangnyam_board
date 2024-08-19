@@ -28,7 +28,17 @@ public class BoardController {
     }
 
     @PostMapping("/board/writepro")
-    public String boardWritePro(Board board, Model model, @RequestParam("file") MultipartFile file) throws Exception{
+    public String boardWritePro(Board board,
+                                Model model,
+                                @RequestParam("file") MultipartFile file,
+                                @RequestParam("visibility") String visibility,
+                                @RequestParam(value = "isRestaurant", required = false) Boolean isRestaurant,
+                                @RequestParam("category") String category) throws Exception{
+
+        board.setVisibility(visibility);
+
+        board.setRestaurant(isRestaurant != null ? isRestaurant : false);
+        board.setCategory(category);
 
         boardService.write(board,file);
 
