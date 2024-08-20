@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>공동주문 작성</title>
+</head>
+<body>
+
+<h1>공동주문 작성하기</h1>
+
+<form th:action="@{/group-order/create}" method="post" enctype="multipart/form-data">
+    <!-- 공동 주문 내용 -->
+    <label for="orderContent">공동 주문 내용:</label><br>
+    <textarea id="orderContent" name="orderContent" rows="4" cols="50" required></textarea><br><br>
+
+    <!-- 인원수 설정 -->
+    <label for="teamSize">인원수(팀) 설정:</label><br>
+    <input id="teamSize" type="number" name="teamSize" min="1" required><br><br>
+
+    <!-- 배달장소 설정 -->
+    <label for="deliveryLocation">배달장소 설정:</label><br>
+    <input id="deliveryLocation" type="text" name="deliveryLocation" required><br><br>
+
+    <!-- 메뉴 설정 -->
+    <label for="menu">메뉴 설정:</label><br>
+    <input id="menu" type="text" name="menu" required><br><br>
+
+    <!-- 이미지 첨부하기 (옵션) -->
+    <label for="imageFile">이미지 첨부하기:</label><br>
+    <input id="imageFile" type="file" name="imageFile"><br><br>
+
+    <!-- 카테고리 설정 (옵션) -->
+    <label for="category">카테고리 설정:</label><br>
+    <select id="category" name="category">
+        <option value="korean">한식</option>
+        <option value="chinese">중식</option>
+        <option value="western">양식</option>
+        <option value="japanese">일식</option>
+        <!-- 추가 카테고리 옵션 -->
+    </select><br><br>
+
+    <!-- 폼 제출 버튼 -->
+    <button type="submit">공동주문 작성하기</button>
+</form>
+
+</body>
+</html>
