@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Group Orders List</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<h1>Group Orders List</h1>
+
+<a href="/group-order/create">Create New Group Order</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Content</th>
+        <th>Number of Teams</th>
+        <th>Delivery Location</th>
+        <th>Menu</th>
+        <th>Image</th>
+        <th>Category</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${orders}">
+        <td th:text="${order.id}"></td>
+        <td th:text="${order.content}"></td>
+        <td th:text="${order.teamSize}"></td>
+        <td th:text="${order.deliveryLocation}"></td>
+        <td th:text="${order.menu}"></td>
+        <td>
+            <img th:if="${order.imagePath != null}" th:src="@{${order.imagePath}}" alt="Order Image" width="100" height="100"/>
+        </td>
+        <td th:text="${order.category}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

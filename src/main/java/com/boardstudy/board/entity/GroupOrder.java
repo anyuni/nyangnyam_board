@@ -11,7 +11,7 @@ public class GroupOrder {
     private int id;
 
     @Column(nullable = false)
-    private String orderContent;
+    private String content;
 
     @Column(nullable = false)
     private int teamSize;

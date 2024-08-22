@@ -8,10 +8,22 @@
 
 <h1>공동주문 작성하기</h1>
 
+<!-- 에러 메시지 표시 -->
+<div th:if="${param.error != null}">
+    <p th:switch="${param.error}">
+        <span th:case="'content'">공동 주문 내용은 필수 입력 사항입니다.</span>
+        <span th:case="'teamSize'">팀 수는 1 이상이어야 합니다.</span>
+        <span th:case="'deliveryLocation'">배달 장소는 필수 입력 사항입니다.</span>
+        <span th:case="'menu'">메뉴는 필수 입력 사항입니다.</span>
+        <span th:case="'exception'">예기치 않은 오류가 발생했습니다. 다시 시도해 주세요.</span>
+        <span th:case="*">알 수 없는 오류가 발생했습니다.</span>
+    </p>
+</div>
+
 <form th:action="@{/group-order/create}" method="post" enctype="multipart/form-data">
     <!-- 공동 주문 내용 -->
-    <label for="orderContent">공동 주문 내용:</label><br>
-    <textarea id="orderContent" name="orderContent" rows="4" cols="50" required></textarea><br><br>
+    <label for="content">공동 주문 내용:</label><br>
+    <textarea id="content" name="content" rows="4" cols="50" required></textarea><br><br>
 
     <!-- 인원수 설정 -->
     <label for="teamSize">인원수(팀) 설정:</label><br>
