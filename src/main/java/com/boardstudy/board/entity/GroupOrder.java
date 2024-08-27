@@ -3,6 +3,9 @@ package com.boardstudy.board.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Data
 public class GroupOrder {
@@ -29,4 +32,9 @@ public class GroupOrder {
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private java.util.Date createdAt = new java.util.Date();
+
+    @ElementCollection
+    private List<String> participants = new ArrayList<>();
+
+
 }

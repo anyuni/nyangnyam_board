@@ -41,4 +41,14 @@ public class GroupOrderService {
     public List<GroupOrder> getAllOrders() {
         return groupOrderRepository.findAll();
     }
+
+    public void joinOrder(int orderId, String participant){
+        Optional<GroupOrder> optionalOrder = groupOrderRepository.findById(orderId);
+        if(optionalOrder.isPresent()){
+            GroupOrder groupOrder = optionalOrder.get();
+            groupOrder.getParticipants().add(participant);
+            groupOrder.setTeamSize(groupOrder.getTeamSize()+1);
+            groupOrderRepository.save(groupOrder);
+        }
+    }
 }
